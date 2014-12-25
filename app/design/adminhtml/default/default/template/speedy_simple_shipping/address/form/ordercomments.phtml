@@ -1,0 +1,37 @@
+<?php
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+ * @website     http://www.bulgento.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+?>
+<?php if($comments = $this->getComments()) : ?>
+<div class="field-row grid">
+    <table cellspacing="0" class="data">
+        <thead>
+        <tr class="headings">
+            <th><?php echo $this->__('Comments to the order:') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul class="note-list">
+                <?php foreach($comments as $_item ) : ?>
+                <li>
+                    <strong><?php echo $this->helper('core')->formatDate($_item->getCreatedAtDate(), 'medium') ?></strong>
+                    <?php echo $this->helper('core')->formatTime($_item->getCreatedAtDate(), 'medium') ?>
+                    <?php if ($_item->getComment()): ?>
+                        <br/><?php echo $this->escapeHtml($_item->getComment(), array('b','br','strong','i','u')) ?>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<?php else : ?>
+    <p><?php echo $this->__('No comments so far.') ?></p>
+<?php endif; ?>

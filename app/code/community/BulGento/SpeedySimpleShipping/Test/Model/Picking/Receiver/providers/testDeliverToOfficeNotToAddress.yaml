@@ -1,0 +1,15 @@
+-
+  - SiteId : id_site
+    StreetName : name_streed
+    StreetNo : xxx_no_street
+    BlockNo : yyy_no_block
+    EntranceNo : zzz_entrance_no
+    FloorNo : fff_no_flow
+    ApartmentNo : 131
+    QuarterId : 123
+    StreetId : 334
+    QuarterName : 413
+    AddressNote : 13
+    PartnerName : 312
+    Telephones : [+359 883 33 58 44]
+  - deliverToAddress : false

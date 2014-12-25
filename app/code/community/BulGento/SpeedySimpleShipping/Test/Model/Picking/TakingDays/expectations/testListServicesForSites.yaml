@@ -1,0 +1,19 @@
+multiple_results:
+  - taking_day: 2014-12-22
+    hour: 15:00
+  - taking_day: 2014-12-23
+    hour: 15:00
+  - taking_day: 2014-12-24
+    hour: 13:00
+  - taking_day: 2014-12-27
+    hour: 13:00
+  - taking_day: 2014-12-29
+    hour: 15:00
+  - taking_day: 2014-12-30
+    hour: 15:00
+  - taking_day: 2014-12-31
+    hour: 13:00
+  - taking_day: 2015-01-05
+    hour: 15:00
+  - taking_day: 2015-01-06
+    hour: 15:00

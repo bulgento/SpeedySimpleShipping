@@ -1,0 +1,32 @@
+multiple_results:
+  - name: "ЕКСПРЕСНА"
+    service_type_id: 2
+
+  - name: "ИКОНОМИЧНА"
+    service_type_id: 3
+
+  - name: "ФИКСИРАН ЧАС - ЕКСПРЕСНА"
+    service_type_id: 26
+  - name: "ФИКСИРАН ЧАС - ИКОНОМИЧНА"
+    service_type_id: 36
+
+  - name: "КОНТЕЙНЕР"
+    service_type_id: 44
+
+  - name: "ПАКЕТНА"
+    service_type_id: 55
+
+  - name: "EXPRESS RO"
+    service_type_id: 202
+
+  - name: "3-5-8"
+    service_type_id: 358
+
+  - name: "3-5-8 ПРЕМИУМ"
+    service_type_id: 359
+
+  - name: "PALLET ONE BG - PREMIUM"
+    service_type_id: 412
+
+  - name: "PALLET ONE BG - ECONOMY"
+    service_type_id: 413

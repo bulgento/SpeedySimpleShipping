@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+ * @website     http://www.bulgento.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+-->
+<layout>
+    <adminhtml_sales_order_shipment_view>
+        <reference name="content">
+            <block type="speedy_simple_shipping/adminhtml_address_form" template="speedy_simple_shipping/address/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_shipment_view>
+</layout>

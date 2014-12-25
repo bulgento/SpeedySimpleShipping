@@ -1,0 +1,106 @@
+<?php if($isValidAddress) : ?>
+    <div class="box-left">
+        <div class="field-row grid">
+            <table cellspacing="0" class="data">
+                <thead>
+                <tr class="headings">
+                    <th colspan="2"><?php echo $this->__('Адрес въведен от клиент') ?> <label style=" float: right; width: auto; color: #D40707; cursor: pointer;">Корекция: <input type="checkbox" id="correct-address" name="correct-address" /></label></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td style="width: 50%">
+                        <label for="address_first_name"><?php echo $this->__('Собствено име:'); ?></label>
+                        <input id="address_first_name" class="input-text disabled" disabled type="text" name="shipping[firstname]" value="<?php echo $shippingAddress->getFirstname(); ?>">
+                    </td>
+                    <td style="width: 50%">
+                        <label for="address_last_name"><?php echo $this->__('Фамилно име:'); ?></label>
+                        <input id="address_last_name" class="input-text disabled" disabled type="text" name="shipping[lastname]" value="<?php echo $shippingAddress->getLastname(); ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="address_city"><?php echo $this->__('Град:'); ?></label>
+                        <input style="width: 94%" id="address_city" class="input-text disabled" disabled type="text" name="shipping[city]" value="<?php echo $shippingAddress->getCity(); ?>">
+                        <input type="hidden" name="billing[speedy_site_id]" value="<?php echo $shippingAddress->getSpeedySiteId(); ?>">
+                    </td>
+                </tr>
+                <?php if ($shippingAddress->getSpeedyOfficeId()) : ?>
+                    <tr>
+                        <td colspan="2">
+                            <label><?php echo $this->__('Офис:'); ?></label>
+                            <input style="width: 94%" type="text" name="billing[speedy_office_locator]" id="billing:speedy_office_locator" class="input-text disabled" disabled value="<?php echo $this->escapeHtml($shippingAddress->getStreet(1)) ?>"/>
+                            <input type="hidden" name="billing[speedy_office_id]" id="billing:speedy_office_id" value="<?php echo $shippingAddress->getSpeedyOfficeId(); ?>" />
+                        </td>
+                    </tr>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="2">
+                            <label for="address_quarter_name"><?php echo $this->__('Квартал:'); ?></label>
+                            <input style="width: 94%" id="address_quarter_name" class="input-text disabled" disabled type="text" name="shipping[speedy_quarter_name]" value="<?php echo $shippingAddress->getSpeedyQuarterName(); ?>">
+                            <input type="hidden" name="billing[speedy_quarter_id]" id="billing:speedy_quarter_id" value="<?php echo $shippingAddress->getSpeedyQuarterId(); ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="address_street"><?php echo $this->__('Улица:'); ?></label>
+                            <input style="width: 94%" id="address_street" class="input-text disabled" disabled type="text" name="shipping[speedy_street_name]" value="<?php echo $shippingAddress->getSpeedyStreetName(); ?>">
+                            <input type="hidden" name="billing[speedy_street_id]" id="billing:speedy_street_id" value="<?php echo $shippingAddress->getSpeedyStreetId(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            <label for="address_street_number"><?php echo $this->__('№:'); ?></label>
+                            <input id="address_street_number" class="input-text disabled" disabled type="text" name="shipping[speedy_street_number]" value="<?php echo $shippingAddress->getSpeedyStreetNumber(); ?>">
+                        </td>
+                        <td style="width: 50%">
+                            <label for="address_building_number"><?php echo $this->__('Бл.:'); ?></label>
+                            <input id="address_building_number" class="input-text disabled" disabled type="text" name="shipping[speedy_block_number]" value="<?php echo $shippingAddress->getSpeedyBlockNumber(); ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            <label for="address_entrance"><?php echo $this->__('Вх.:'); ?></label>
+                            <input id="address_entrance" class="input-text disabled" disabled type="text" name="shipping[speedy_entrance]" value="<?php echo $shippingAddress->getSpeedyEntrance(); ?>">
+                        </td>
+                        <td style="width: 50%">
+                            <label for="address_floor"><?php echo $this->__('Ет.:'); ?></label>
+                            <input id="address_floor" class="input-text disabled" disabled type="text" name="shipping[speedy_floor]" value="<?php echo $shippingAddress->getSpeedyFloor(); ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            <label for="address_apartment"><?php echo $this->__('Ап.:'); ?></label>
+                            <input id="address_apartment" class="input-text disabled" disabled type="text" name="shipping[apartment]" value="<?php echo $shippingAddress->getSpeedyApartment(); ?>">
+                        </td>
+                        <td style="width: 50%"></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <td style="width: 50%">
+                        <label for="address_postcode"><?php echo $this->__('Пощенски код:'); ?></label>
+                        <input id="address_postcode" class="input-text disabled" disabled type="text" name="shipping[postcode]" value="<?php echo $shippingAddress->getPostcode(); ?>">
+                    </td>
+                    <td style="width: 50%">
+                        <label for="address_region"><?php echo $this->__('Област:'); ?></label>
+                        <input id="address_region" class="input-text disabled" disabled type="text" name="shipping[region]" value="<?php echo $shippingAddress->getRegion(); ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%">
+                        <label for="address_telephone"><?php echo $this->__('Телефон:'); ?></label>
+                        <input id="address_telephone" class="input-text disabled" disabled type="text" name="shipping[telephone]" value="<?php echo $shippingAddress->getTelephone(); ?>">
+                    </td>
+                    <td style="width: 50%"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="address_note"><?php echo $this->__('Забележка към адреса:'); ?></label>
+                        <textarea style="width: 94%" id="address_note" class="input-text disabled" disabled type="text" name="shipping[address_note]"><?php echo $shippingAddress->getSpeedyAddressNote(); ?></textarea>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+* @website     http://www.bulgento.com
+* @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+*/
+-->
+<config>
+    <modules>
+        <BulGento_SpeedySimpleShipping>
+            <version>0.1.0-dev1</version>
+        </BulGento_SpeedySimpleShipping>
+    </modules>
+
+    <global>
+        <helpers>
+            <speedy_simple_shipping>
+                <class>BulGento_SpeedySimpleShipping_Helper</class>
+            </speedy_simple_shipping>
+        </helpers>
+        <models>
+            <speedy_simple_shipping>
+                <class>BulGento_SpeedySimpleShipping_Model</class>
+            </speedy_simple_shipping>
+        </models>
+        <blocks>
+            <speedy_simple_shipping>
+                <class>BulGento_SpeedySimpleShipping_Block</class>
+            </speedy_simple_shipping>
+        </blocks>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <speedy_simple_shipping>
+                    <file>speedy_simple_shipping/speedy.xml</file>
+                </speedy_simple_shipping>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <speedy_simple_shipping before="Mage_Adminhtml">BulGento_SpeedySimpleShipping_Adminhtml</speedy_simple_shipping>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <BulGento_SpeedySimpleShipping />
+            </modules>
+        </suite>
+    </phpunit>
+</config>

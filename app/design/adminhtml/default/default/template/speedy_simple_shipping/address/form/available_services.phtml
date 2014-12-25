@@ -1,0 +1,35 @@
+<?php
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+ * @website     http://www.bulgento.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+?>
+
+<?php
+    $optionArray = $this->getServicesOptions();
+
+    if(!empty($optionArray)) :
+
+    //Harcoded logic
+    //ГРАДСКИ КУРИЕР - 1 ДЕН
+    $predefinedServiceId = 113;
+    if(array_key_exists($predefinedServiceId, $optionArray)) :
+?>
+    <select id="service_type_id" name="service_type_id" class="select" style="width:230px">
+        <?php foreach($optionArray as $typeId => $label) : ?>
+            <option value="<?php echo $typeId; ?>" <?php if($predefinedServiceId == $typeId) : ?> selected="selected"<?php endif; ?> ><?php echo $label; ?></option>
+        <?php endforeach; ?>
+    </select>
+    <?php else : ?>
+    <select id="service_type_id" name="service_type_id" class="select" style="width:230px">
+        <?php $i = 0; ?>
+        <?php foreach($optionArray as $typeId => $label) : ?>
+            <option value="<?php echo $typeId; ?>" <?php if($i++ == 0) : ?> selected="selected"<?php endif; ?> ><?php echo $label; ?></option>
+        <?php endforeach; ?>
+    </select>
+    <?php endif; ?>
+
+<?php else : ?>
+    <?php echo $this->__('No services found so far. Please choose a site to get a list of all available services!') ?>
+<?php endif; ?>

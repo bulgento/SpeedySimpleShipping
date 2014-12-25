@@ -1,0 +1,112 @@
+-
+  - multiple_results
+  -
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 2
+      name : ЕКСПРЕСНА
+      allowanceFixedTimeDelivery : ALLOWED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-07T19:00:00+03:00
+      typeId : 3
+      name : ИКОНОМИЧНА
+      allowanceFixedTimeDelivery : ALLOWED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 26
+      name : ФИКСИРАН ЧАС - ЕКСПРЕСНА
+      allowanceFixedTimeDelivery : REQUIRED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-07T19:00:00+03:00
+      typeId : 36
+      name : ФИКСИРАН ЧАС - ИКОНОМИЧНА
+      allowanceFixedTimeDelivery : REQUIRED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-07T19:00:00+03:00
+      typeId : 44
+      name : КОНТЕЙНЕР
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 55
+      name : ПАКЕТНА
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 202
+      name : EXPRESS RO
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : BANNED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-07T19:00:00+03:00
+      typeId : 358
+      name : 3-5-8
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 359
+      name : 3-5-8 ПРЕМИУМ
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-06T19:00:00+03:00
+      typeId : 412
+      name : PALLET ONE BG - PREMIUM
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED
+
+    - deliveryDeadline : 2014-10-07T19:00:00+03:00
+      typeId : 413
+      name : PALLET ONE BG - ECONOMY
+      allowanceFixedTimeDelivery : BANNED
+      allowanceCashOnDelivery : ALLOWED
+      allowanceInsurance : ALLOWED
+      allowanceBackDocumentsRequest : ALLOWED
+      allowanceBackReceiptRequest : ALLOWED
+      allowanceToBeCalled : ALLOWED

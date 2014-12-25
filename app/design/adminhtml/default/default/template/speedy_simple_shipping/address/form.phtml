@@ -1,0 +1,631 @@
+<?php
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+ * @website     http://www.bulgento.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+
+/** @var BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form $this */
+
+/** @var Mage_Sales_Model_Order $order */
+$order = $this->getOrder();
+?>
+
+<form action="<?php echo $this->getSubmitFormAction() ?>" id="speedy-create-bill-of-lading-form" method="post" autocomplete="off">
+    <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+    <input type="hidden" name="store_id" value="<?php echo $this->getStoreId(); ?>" />
+    <div class="entry-edit" style="width: 1360px;">
+        <div class="entry-edit-head">
+            <h4><?php echo $this->__('Bill of lading details') ?></h4>
+        </div>
+        <fieldset>
+            <div id="bol-message" class="messages"></div>
+            <div class="box-left">
+                <div class="box-left" style="width: 46%; margin-right: 10px;">
+                    <div class="field-row grid">
+                        <table cellspacing="0" class="data">
+                            <thead>
+                                <tr class="headings">
+                                    <th><?php echo $this->__('Magento address') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <address><?php echo $this->getShippingAddress()->getFormated('html') ?></address>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="address-correction" class="box-left">
+                    <input type="hidden" value="1" checked name="correct-address" />
+                    <div class="field-row grid">
+                        <table cellspacing="0" class="data">
+                            <thead>
+                                <tr class="headings">
+                                    <th colspan="2"><?php echo $this->__('Speedy address') ?></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="input-text field-row">
+                                            <label for="speedy_address:fullname"><?php echo $this->__('Name:'); ?> <span class="required">*</span></label>
+                                            <input id="speedy_address:fullname" class="input-text required-entry" type="text" name="speedy_address[fullname]" value="<?php echo $order->getShippingAddress()->getName(); ?>" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="input-text field-row">
+                                            <label for="speedy_address:city"><?php echo $this->__('City:'); ?> <span class="required">*</span></label>
+                                            <input id="speedy_address:city" class="input-text required-entry" type="text" name="speedy_address[city]" value="" />
+                                            <input type="hidden" name="speedy_address[speedy_site_id]" id="speedy_address:speedy_site_id" value="" />
+                                            <span id="siteIndicator" style="display: none">
+                                                <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="<?php echo $this->__('Working...') ?>" />
+                                            </span>
+                                            <div id="site_autocomplete_choices" class="autocomplete"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label style="width: auto; color: #D40707; cursor: pointer;"><input type="checkbox" id="speedy_address:speedy_office_chooser" /> <?php echo $this->__('Deliver to Speedy Office') ?></label>
+                                    </td>
+                                </tr>
+                                <tr class="office-address" style="display: none">
+                                    <td colspan="2">
+                                        <label for=""></label>
+                                        <div class="input-box">
+                                            <label for="speedy_address:speedy_office_locator"><?php echo $this->__('Office:'); ?> <span class="required">*</span></label>
+                                            <input type="text" name="speedy_address[speedy_office_locator]" id="speedy_address:speedy_office_locator" class="input-text" />
+                                            <input type="hidden" name="speedy_address[speedy_office_id]" id="speedy_address:speedy_office_id" />
+                                            <span id="officeIndicator" style="display: none">
+                                                <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="<?php echo $this->__('Working...') ?>" />
+                                            </span>
+                                            <div id="office_autocomplete_choices" class="autocomplete"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="standard-address">
+                                    <td colspan="2">
+                                        <label for="speedy_address:speedy_quarter_name"><?php echo $this->__('Quarter:'); ?></label>
+                                        <input style="width: 94%" id="speedy_address:speedy_quarter_name" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_quarter_name]" value="" />
+                                        <input type="hidden" name="speedy_address[speedy_quarter_id]" class="normal-correction-input" id="speedy_address:speedy_quarter_id" value="" />
+                                        <span id="quarterIndicator" style="display: none">
+                                            <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="<?php echo $this->__('Working...') ?>" />
+                                        </span>
+                                        <div id="quarter_autocomplete_choices" class="autocomplete"></div>
+                                    </td>
+                                </tr>
+                                <tr class="standard-address">
+                                    <td colspan="2">
+                                        <label for="speedy_address:speedy_street"><?php echo $this->__('Street:'); ?></label>
+                                        <input style="width: 94%" id="speedy_address:speedy_street" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_street_name]" value="" />
+                                        <input type="hidden" name="speedy_address[speedy_street_id]" class="normal-correction-input" id="speedy_address:speedy_street_id" value="" />
+                                        <span id="streetIndicator" style="display: none">
+                                            <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="Working..." />
+                                        </span>
+                                        <div id="street_autocomplete_choices" class="autocomplete"></div>
+                                    </td>
+                                </tr>
+                                <tr class="standard-address">
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:street_number"><?php echo $this->__('Number:'); ?></label>
+                                        <input id="speedy_address:street_number" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_street_number]" value="" />
+                                    </td>
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:speedy_block_number"><?php echo $this->__('Block:'); ?></label>
+                                        <input id="speedy_address:speedy_block_number" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_block_number]" value="" />
+                                        <span id="blockIndicator" style="display: none">
+                                            <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="Working..." />
+                                        </span>
+                                        <div id="block_autocomplete_choices" class="autocomplete"></div>
+                                    </td>
+                                </tr>
+                                <tr class="standard-address">
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:entrance"><?php echo $this->__('Entrance:'); ?></label>
+                                        <input id="speedy_address:entrance" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_entrance]" value="" />
+                                    </td>
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:floor"><?php echo $this->__('Floor:'); ?></label>
+                                        <input id="speedy_address:floor" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_floor]" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%">
+                                        <div class="standard-address">
+                                            <label for="speedy_address:apartment"><?php echo $this->__('Apartment:'); ?></label>
+                                            <input id="speedy_address:apartment" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_apartment]" value="" />
+                                        </div>
+                                    </td>
+                                    <td style="width: 50%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:postcode"><?php echo $this->__('Post code:'); ?></label>
+                                        <input id="speedy_address:postcode" class="input-text disabled" disabled type="text" name="speedy_address[postcode]" value="" />
+                                    </td>
+                                    <td style="width: 50%">
+                                        <label for="speedy_address:region"><?php echo $this->__('District:'); ?></label>
+                                        <input id="speedy_address:region" class="input-text disabled" disabled type="text" name="speedy_address[region]" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%">
+                                    </td>
+                                    <td style="width: 50%">
+                                        <div class="input-text field-row">
+                                            <div id="clone-phone-wrapper">
+                                                <label for="speedy_address:telephone"><?php echo $this->__('Phone:'); ?> <span class="required">*</span></label>
+                                                <div>
+                                                    <input id="speedy_address:telephone" class="input-text required-entry" type="text" name="speedy_address[telephone][0]" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="scalable add" id="phone-clone"><span><span><?php echo $this->__('Add number') ?></span></span></button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="box-left">
+                <div>
+                    <?php
+                        $block = Mage::app()->getLayout()
+                            ->createBlock(
+                                'speedyshippingmodule/adminhtml_billOfLading_orderComment',
+                                'order.comments.lis',
+                                array('template' => 'speedy_speedyshipping/billoflading/form/ordercomments.phtml')
+                            );
+                        //echo $block->toHtml();
+                    ?>
+                </div>
+                <div class="field-row grid" id="shipment_tracking_info">
+                    <table cellspacing="0" class="data">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr class="headings">
+                                <th><?php echo $this->__('Shipping method') ?> <span class="required">*</span></th>
+                                <th><?php echo $this->__('Taking Time') ?> <span class="required">*</span></th>
+                                <th><?php echo $this->__('Packages number') ?></th>
+                                <th><?php echo $this->__('Notes') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div id="services_select_container"></div>
+                                </td>
+                                <td>
+                                    <div id="taking_dates_select_container"></div>
+                                <td>
+                                    <select name="packages_number" class="select" style="width:60px">
+                                        <?php for($i = 1; $i <= 10; $i++) : ?>
+                                            <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="speedy_address_note"><?php echo $this->__('Note to address:') ?></label>
+                                    <textarea id="speedy_address_note" name="speedy_address[speedy_address_note]" style="width: 190px; height: 100px; resize: none; "></textarea>
+                                    <br />
+                                    <label for="client_note"><?php echo $this->__('Client\'s note:') ?></label>
+                                    <textarea id="client_note" name="client_note" style="width: 190px; height: 100px; resize: none; "></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="field-row grid" id="shipment_tracking_info">
+                    <table cellspacing="0" class="data">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr class="headings">
+                            <th><?php echo $this->__('Cash on delivery') ?></th>
+                            <th><?php echo $this->__('Reference') ?></th>
+                            <th><?php echo $this->__('Weight') ?></th>
+                            <th><?php echo $this->__('Content') ?></th>
+                            <th><?php echo $this->__('Packing') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $picking = new Varien_Object(); ?>
+                        <tr>
+                            <td>
+                                <?php
+                                $paymentMethodCode = $order->getPayment()->getMethod();
+                                if ('cashondelivery' == $paymentMethodCode) :
+                                    ?>
+                                    <?php echo $this->__('Yes') ?> <br /><?php echo $this->__('Amount:') ?> <?php echo Mage::helper('core')->currency($order->getBaseGrandTotal(), true, false); ?>
+                                <?php else : ?>
+                                    <?php echo $this->__('No') ?>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo $this->__('Reference 1:') ?> <?php echo $this->getOrder()->getIncrementId(); ?></td>
+                            <td><?php echo $picking->getWeightDeclared(); ?>кг</td>
+                            <td><?php echo $picking->getContents(); ?></td>
+                            <td><?php echo $picking->getPacking(); ?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" style="margin-top: 15px;" class="scalable right" onclick="submitBillOfLadingForm()">
+                        <span>
+                            <span>
+                                <span>
+                                    <?php echo $this->__('Create Shipping Label...'); ?>
+                                </span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+</form>
+<script>
+//<![CDATA[
+    var speedyCreateBillOfLadingForm = new varienForm('speedy-create-bill-of-lading-form', '');
+
+    var submitBillOfLadingForm = function() {
+
+        if(speedyCreateBillOfLadingForm.validate()) {
+            var billOfLadingForm = $('speedy-create-bill-of-lading-form');
+
+            var url         = $(billOfLadingForm).readAttribute('action');
+            var method      = $(billOfLadingForm).readAttribute('method');
+            var formData    = $(billOfLadingForm).serialize(true);
+
+            new Ajax.Request(url, {
+                method      : method,
+                parameters  : formData,
+                onSuccess : function(transport) {
+                    var data = transport.responseText.evalJSON(true);
+
+                    if(data.error) {
+                        $('bol-message').update('<div class="error-msg" style="padding: 10px 10px 10px 30px; margin-bottom: 10px;">' + data.message + '</div>');
+                    } else {
+                        $('bol-message').update('<div class="success-msg" style="padding: 10px 10px 10px 30px; margin-bottom: 10px;">' + data.message + '</div>');
+                        setTimeout('window.location = ' + document.url + ';' , 3000);
+                    }
+                }
+            });
+        }
+    }
+<?php
+/**
+ *
+ * Autocomplete logic
+ *
+ * Yeah yeah, I know JS logic in the templates
+ * I just don't want to add one more .js file in the module
+ *
+ */
+?>
+var SPEEDY_SHIPPING_AJAX_ALLOWED_DAYS_FOR_TACKING_URL   = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_allowed_days_for_taking'); ?>';
+var SPEEDY_SHIPPING_AJAX_ADDRESS_GET_SITES_URL          = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_sites'); ?>';
+var SPEEDY_SHIPPING_AJAX_AVAILABLE_SERVICES_URL         = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_available_services'); ?>';
+var SPEEDY_SHIPPING_AJAX_ADDRESS_GET_OFFICES_URL        = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_offices'); ?>';
+var SPEEDY_SHIPPING_AJAX_ADDRESS_GET_QUARTER_URL        = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_quarters'); ?>';
+var SPEEDY_SHIPPING_AJAX_ADDRESS_GET_STREETS_URL        = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_streets'); ?>';
+var SPEEDY_SHIPPING_AJAX_ADDRESS_GET_BLOCKS_URL         = '<?php echo $this->getUrl('adminhtml/speedySimpleShipping_ajax/fetch_blocks'); ?>';
+
+document.observe("dom:loaded", function() {
+    var SpeedyAutocompleterActiveResponse = [];
+
+    var nomenclatureType;
+
+    var SpeedyAutocompleter = Class.create(Ajax.Autocompleter, {
+
+        initialize: function($super, id_search, id_list, url, options) {
+            $super(id_search, id_list, url, options);
+        },
+
+        onComplete: function(response) {
+            var text = response.responseText;
+
+            if (text.isJSON()) {
+                this.handleJSON(text.evalJSON());
+            }
+            // else do nothing
+        },
+
+        handleJSON: function(json) {
+            var htmlStr = '<ul>';
+            json.each(function(item) {
+                SpeedyAutocompleterActiveResponse[item.id] = item;
+                htmlStr += '<li id="' + item.id + '">';
+                htmlStr += item.name;
+                htmlStr += '</li>';
+            });
+            htmlStr += '</ul>';
+
+            this.updateChoices(htmlStr);
+        },
+
+        getUpdatedChoices: function() {
+            this.startIndicator();
+
+            var entry = encodeURIComponent(this.options.paramName) + '=' +
+                encodeURIComponent(this.getToken());
+
+            this.options.parameters = this.options.callback ?
+                this.options.callback(this.element, entry) : entry;
+
+            if(this.options.defaultParams) {
+                var myOptions = this.options.defaultParams;
+
+                while(myOptions.indexOf("$('") > 0) {
+                    if (myOptions.indexOf("$('") > 0) {
+                        var myparameter = myOptions.slice(myOptions.indexOf("$('") + 3, myOptions.indexOf("').value"));
+                        myOptions =
+                            myOptions.slice(0, myOptions.indexOf("$('"))
+                                + $(myparameter).value
+                                + myOptions.slice(myOptions.indexOf("').value") + 8);
+                    }
+                }
+
+                this.options.parameters += '&' + myOptions;
+            }
+
+            new Ajax.Request(this.url, this.options);
+        }
+
+    });
+
+    var initUpdateTakingDates = function() {
+        $('service_type_id').observe('change', function() {
+            initTakingDates();
+        });
+    };
+
+    var initTakingDates = function() {
+        var serviceTypeId = $('service_type_id').getValue();
+
+        new Ajax.Request(SPEEDY_SHIPPING_AJAX_ALLOWED_DAYS_FOR_TACKING_URL + 'service_type_id/' + serviceTypeId, {
+            onSuccess: function(response) {
+                var data = response.responseText.evalJSON(true);
+
+                var takingDaysSelectHtml = '<select id="taking_days">';
+
+                data.each(function(item) {
+                    takingDaysSelectHtml += '<option value="' + item.taking_day + '">';
+                    takingDaysSelectHtml += item.taking_day + ' to ' + item.hour;
+                    takingDaysSelectHtml += '</option>';
+                });
+
+                takingDaysSelectHtml += '</select>';
+
+                $('taking_dates_select_container').update(takingDaysSelectHtml);
+            }
+        });
+    };
+
+    $('speedy_address:speedy_office_chooser').observe('change', function(event) {
+        var element = Event.element(event);
+        if (element.checked) {
+            $$('.standard-address').each(function(element) {
+                $(element).hide();
+
+                $(element).select('input').each(function(child) {
+                    $(child).setValue('');
+                });
+            });
+
+            $$('.office-address').each(function(element) {
+                $(element).show();
+            });
+        } else {
+            $$('.standard-address').each(function(element) {
+                $(element).show();
+
+                $(element).select('input').each(function(child) {
+                    $(child).setValue('');
+                });
+            });
+
+            $$('.office-address').each(function(element) {
+                $(element).hide();
+
+                $(element).select('input').each(function(child) {
+                    $(child).setValue('');
+                });
+            });
+        }
+    });
+
+    /**
+     * Site autocompleter
+     */
+    var siteAutocompleter = new SpeedyAutocompleter(
+        'speedy_address:city',
+        'site_autocomplete_choices',
+        SPEEDY_SHIPPING_AJAX_ADDRESS_GET_SITES_URL,
+        {
+            minChars : 3,
+            paramName : 'term',
+            afterUpdateElement: function(text, li) {
+                var itemId = li.id;
+                var item = SpeedyAutocompleterActiveResponse[itemId];
+
+                $('speedy_address:speedy_site_id').setValue(item.id);
+                $('speedy_address:postcode').setValue(item.post_code);
+                $('speedy_address:region').setValue(item.region);
+
+                nomenclatureType = item.is_full_nomenclature;
+
+                if (item.is_full_nomenclature == 'NO') {
+                    isFullNomenclature = 'NO';
+                } else if (item.is_full_nomenclature == 'PARTIAL') {
+                    isFullNomenclature = 'PARTIAL';
+                } else {
+                    isFullNomenclature = 'FULL';
+                }
+
+                new Ajax.Request(SPEEDY_SHIPPING_AJAX_AVAILABLE_SERVICES_URL + 'receiver_site_id/' + itemId, {
+                    onSuccess: function(response) {
+                        var data = response.responseText.evalJSON(true);
+
+                        var servicesSelectHtml = '<select id="service_type_id">';
+
+                        data.each(function(item) {
+                            servicesSelectHtml += '<option value="' + item.service_type_id + '">';
+                            servicesSelectHtml += item.name;
+                            servicesSelectHtml += '</option>';
+                        });
+
+                        servicesSelectHtml += '</select>';
+
+                        $('services_select_container').update(servicesSelectHtml);
+                        initTakingDates();
+                        initUpdateTakingDates();
+                    }
+                });
+
+                SpeedyAutocompleterActiveResponse.length = 0;
+
+                return false;
+            },
+            indicator: 'siteIndicator',
+            onCreate : function() {},
+            loaderArea : false
+        }
+    );
+
+    /**
+     * Offices autocompleter
+     */
+    var officeAutocompleter = new SpeedyAutocompleter(
+        'speedy_address:speedy_office_locator',
+        'office_autocomplete_choices',
+        SPEEDY_SHIPPING_AJAX_ADDRESS_GET_OFFICES_URL,
+        {
+            minChars : 0,
+            paramName : 'term',
+            afterUpdateElement: function(text, li) {
+                var itemId = li.id;
+                var item = SpeedyAutocompleterActiveResponse[itemId];
+
+                $('speedy_address:speedy_office_id').setValue(item.office_id);
+                $('speedy_address:speedy_street').setValue(item.name);
+
+                SpeedyAutocompleterActiveResponse.length = 0;
+
+                return false;
+            },
+            parameters : "cityid=$('speedy_address:speedy_site_id').value",
+            indicator: 'officeIndicator',
+            onCreate : function() {},
+            loaderArea : false
+        }
+    );
+
+    /**
+     * Office autocompleter fire ajax/autocomplete on focus with empty search phrase
+     */
+    $('speedy_address:speedy_office_locator').observe('focus', function() {
+        officeAutocompleter.activate();
+    });
+
+    /**
+     * Quarter autocompleter
+     */
+    var quarterAutocompleter = new SpeedyAutocompleter(
+        'speedy_address:speedy_quarter_name',
+        'quarter_autocomplete_choices',
+        SPEEDY_SHIPPING_AJAX_ADDRESS_GET_QUARTER_URL,
+        {
+            minChars : 3,
+            paramName : 'term',
+            afterUpdateElement: function(text, li) {
+                var itemId = li.id;
+                var item = SpeedyAutocompleterActiveResponse[itemId];
+
+                $('speedy_address:speedy_quarter_id').setValue(item.quarter_id);
+
+                SpeedyAutocompleterActiveResponse.length = 0;
+
+                return false;
+            },
+            parameters : "cityid=$('speedy_address:speedy_site_id').value",
+            indicator: 'quarterIndicator',
+            onCreate : function() {},
+            loaderArea : false
+        }
+    );
+
+    /**
+     * Street autocompleter
+     */
+    var streetAutocompleter = new SpeedyAutocompleter(
+        'speedy_address:speedy_street',
+        'street_autocomplete_choices',
+        SPEEDY_SHIPPING_AJAX_ADDRESS_GET_STREETS_URL,
+        {
+            minChars : 3,
+            paramName : 'term',
+            afterUpdateElement: function(text, li) {
+                var itemId = li.id;
+                var item = SpeedyAutocompleterActiveResponse[itemId];
+
+                $('speedy_address:speedy_street_id').setValue(item.value);
+
+                SpeedyAutocompleterActiveResponse.length = 0;
+
+                return false;
+            },
+            parameters : "cityid=$('speedy_address:speedy_site_id').value",
+            indicator: 'streetIndicator',
+            onCreate : function() {},
+            loaderArea : false
+        }
+    );
+
+    /**
+     * Block autocompleter
+     */
+    var blockAutocompleter = new SpeedyAutocompleter(
+        'speedy_address:speedy_block_number',
+        'block_autocomplete_choices',
+        SPEEDY_SHIPPING_AJAX_ADDRESS_GET_BLOCKS_URL,
+        {
+            minChars : 3,
+            paramName : 'term',
+            afterUpdateElement: function(text, li) {
+                var itemId = li.id;
+                var item = SpeedyAutocompleterActiveResponse[itemId];
+
+                $('speedy_address:speedy_block_number').setValue(item.name);
+
+                SpeedyAutocompleterActiveResponse.length = 0;
+
+                return false;
+            },
+            parameters : "cityid=$('speedy_address:speedy_site_id').value",
+            indicator: 'blockIndicator',
+            onCreate : function() {},
+            loaderArea : false
+        }
+    );
+});
+//]]>
+</script>

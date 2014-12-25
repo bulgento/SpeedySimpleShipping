@@ -1,0 +1,18 @@
+more_than_one_result:
+  - name: жк МЛАДОСТ 1
+    quarter_id: 47
+
+  - name: жк МЛАДОСТ 1А
+    quarter_id: 48
+
+  - name: жк МЛАДОСТ 2
+    quarter_id: 49
+
+  - name: жк МЛАДОСТ 3
+    quarter_id: 50
+
+  - name: жк МЛАДОСТ 4
+    quarter_id: 51
+
+  - name: жк ПЕРЛИТЕ НА МЛАДОСТ
+    quarter_id: 389

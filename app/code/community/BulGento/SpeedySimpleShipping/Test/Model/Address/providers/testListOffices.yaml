@@ -1,0 +1,76 @@
+-
+  - more_than_one_result
+  -
+    - id: 41
+      name: СОФИЯ-БОИЛА
+      siteId: 68134
+      address:
+        countryId: 100
+        stateId:
+        siteId: 68134
+        siteName: СОФИЯ
+        siteType: гр.
+        municipalityName: СТОЛИЧНА
+        regionName: СОФИЯ - ГРАД
+        postCode: 1000
+        eknm: 68134
+        streetName: ул. САМОКОВСКО ШОСЕ № 2Л, ТЦ БОИЛА
+        streetType:
+        streetId: 2815
+        quarterName:
+        quarterType:
+        quarterId:
+        streetNo:
+        blockNo:
+        entranceNo:
+        floorNo:
+        apartmentNo:
+        addressNote:
+        coordX: 23.399282
+        coordY: 42.641944
+        coordTypeId: 200
+        commonObjectName:
+        commonObjectId:
+        fullNomenclature: 1
+        siteDetails:
+      workingTimeFrom:  830
+      workingTimeTo:  1900
+      workingTimeHalfFrom:  830
+      workingTimeHalfTo:  1400
+
+    - id: 598
+      name:  СОФИЯ-ДИАНАБАД (SPS)
+      siteId:  68134
+      address:
+        countryId: 100
+        stateId:
+        siteId: 68134
+        siteName: СОФИЯ
+        siteType: гр.
+        municipalityName: СТОЛИЧНА
+        regionName: СОФИЯ - ГРАД
+        postCode: 1000
+        eknm: 68134
+        streetName: ул. НИКОЛА ГАБРОВСКИ № 18 вх. М-Н 4, /БИВША ОПТИКА ДО ПОЛИКЛИНИКАТА/
+        streetType:
+        streetId: 2397
+        quarterName:
+        quarterType:
+        quarterId:
+        streetNo:
+        blockNo:
+        entranceNo:
+        floorNo:
+        apartmentNo:
+        addressNote:
+        coordX: 23.343791
+        coordY: 42.663769
+        coordTypeId: 201
+        commonObjectName:
+        commonObjectId:
+        fullNomenclature: 1
+        siteDetails:
+      workingTimeFrom:  930
+      workingTimeTo:  1800
+      workingTimeHalfFrom:  1000
+      workingTimeHalfTo:  1300

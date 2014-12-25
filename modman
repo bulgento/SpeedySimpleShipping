@@ -1,0 +1,9 @@
+# BulGento_SpeedyShipping definition
+app/etc/modules/*.xml                                          app/etc/modules/
+app/code/community/BulGento/SpeedySimpleShipping/*             app/code/community/BulGento/SpeedySimpleShipping/
+app/design/adminhtml/default/default/layout/*                  app/design/adminhtml/default/default/layout/
+app/design/adminhtml/default/default/template/*                app/design/adminhtml/default/default/template/
+
+#app/locale/en_US/*                                            app/locale/en_US/
+#app/locale/bg_BG/*                                            app/locale/bg_BG/
+#app/design/frontend/base/default/template/*                   app/design/frontend/base/default/template/
