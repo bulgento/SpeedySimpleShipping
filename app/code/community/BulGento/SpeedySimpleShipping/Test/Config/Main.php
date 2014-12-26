@@ -22,7 +22,7 @@ class BulGento_SpeedySimpleShipping_Test_Config_Main
 
     public function testModuleVersion()
     {
-        $this->assertModuleVersion('0.1.0-dev1');
+        $this->assertModuleVersion('0.1.0-dev2');
     }
 
     public function testModelsAliases()

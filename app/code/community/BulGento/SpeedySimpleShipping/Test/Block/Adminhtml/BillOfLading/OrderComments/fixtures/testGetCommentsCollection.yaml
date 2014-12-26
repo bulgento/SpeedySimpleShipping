@@ -1,0 +1,26 @@
+tables:
+  sales/order_status_history:
+    - entity_id: 1
+      parent_id: 1
+      is_customer_notified: 1
+      is_visible_on_front: 0
+      status: "pending"
+      created_at: "2014-09-02 19:12:14"
+      entity_name: "order"
+
+    - entity_id: 2
+      parent_id: 1
+      is_customer_notified: 0
+      is_visible_on_front: 0
+      status: "processing"
+      created_at: "2014-09-02 19:13:31"
+      entity_name: "shipment"
+
+    - entity_id: 3
+      parent_id: 1
+      is_customer_notified: 0
+      is_visible_on_front: 0
+      comment: "Test comment"
+      status: "processing"
+      created_at: "2014-12-25 18:16:59"
+      entity_name: "order"

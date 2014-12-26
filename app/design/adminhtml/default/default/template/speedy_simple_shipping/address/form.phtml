@@ -177,15 +177,7 @@ $order = $this->getOrder();
             </div>
             <div class="box-left">
                 <div>
-                    <?php
-                        $block = Mage::app()->getLayout()
-                            ->createBlock(
-                                'speedyshippingmodule/adminhtml_billOfLading_orderComment',
-                                'order.comments.lis',
-                                array('template' => 'speedy_speedyshipping/billoflading/form/ordercomments.phtml')
-                            );
-                        //echo $block->toHtml();
-                    ?>
+                    <?php echo $this->getOrderCommentsHtml() ?>
                 </div>
                 <div class="field-row grid" id="shipment_tracking_info">
                     <table cellspacing="0" class="data">

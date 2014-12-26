@@ -1,0 +1,4 @@
+has_comment:
+  comment: "Test comment"
+has_no_comments:
+  comment: null

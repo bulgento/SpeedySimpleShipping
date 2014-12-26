@@ -49,4 +49,21 @@ class BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form
         return $this->_shipment->getOrder();
     }
 
+    /**
+     * @return string
+     */
+    public function getOrderCommentsHtml()
+    {
+        $block = $this->getLayout()
+            ->createBlock(
+                'speedy_simple_shipping/adminhtml_billOfLading_orderComments',
+                'order.comments.list'
+            );
+
+        $block->setTemplate('speedy_simple_shipping/billoflading/form/ordercomments.phtml');
+        $block->setOrder($this->getOrder());
+
+        return $block->toHtml();
+    }
+
 }
