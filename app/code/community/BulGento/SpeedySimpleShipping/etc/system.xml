@@ -35,7 +35,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </server>
-                        <username translate="label">
+                        <api_username translate="label">
                             <label>Username</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
@@ -43,8 +43,8 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <validate>required-entry</validate>
-                        </username>
-                        <password translate="label">
+                        </api_username>
+                        <api_password translate="label">
                             <label>Password</label>
                             <frontend_type>obscure</frontend_type>
                             <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
@@ -53,8 +53,8 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <validate>required-entry</validate>
-                        </password>
-                        <contact_name>
+                        </api_password>
+                        <sender_name>
                             <label>Contact name</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>7</sort_order>
@@ -62,8 +62,8 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <validate>required-entry</validate>
-                        </contact_name>
-                        <contact_telephone>
+                        </sender_name>
+                        <sender_phone_number>
                             <label>Phone number</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>7</sort_order>
@@ -71,11 +71,20 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <validate>required-entry</validate>
-                        </contact_telephone>
+                        </sender_phone_number>
+                        <sender_site>
+                            <label>Sender Site</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                        </sender_site>
                         <contents>
                             <label>Package content</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>8</sort_order>
+                            <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>

@@ -66,4 +66,22 @@ class BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form
         return $block->toHtml();
     }
 
+    /**
+     * @return string
+     */
+    public function getSenderInfoHtml()
+    {
+        $block = $this->getLayout()
+            ->createBlock(
+                'speedy_simple_shipping/adminhtml_billOfLading_sender',
+                'sender.info'
+            );
+
+        $block->setTemplate('speedy_simple_shipping/billoflading/form/sender_info.phtml');
+
+        return $block->toHtml();
+    }
+
+
+
 }

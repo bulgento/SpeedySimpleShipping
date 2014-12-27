@@ -1,0 +1,6 @@
+config:
+  default/carriers/speedy_simple_shipping/sender_phone_number: "test phone"
+  default/carriers/speedy_simple_shipping/api_username: "test api username"
+  default/carriers/speedy_simple_shipping/sender_name: "test name"
+  default/carriers/speedy_simple_shipping/sender_site: "test site"
+

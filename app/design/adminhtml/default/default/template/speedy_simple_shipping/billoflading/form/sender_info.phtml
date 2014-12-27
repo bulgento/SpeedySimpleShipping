@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
+ * @website     http://www.bulgento.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+
+/** @var $this BulGento_SpeedySimpleShipping_Block_Adminhtml_BillOfLading_Sender */
+
+$_senderHelper = $this->getSenderHelper();
+?>
+
+<div class="field-row grid">
+    <table cellspacing="0" class="data">
+        <thead>
+        <tr class="headings">
+            <th><?php echo $this->__('Sender info:') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li><?php echo $this->__('Api Username:') ?> <strong><?php echo $_senderHelper->getApiUsername(); ?></strong></li>
+                    <li><?php echo $this->__('Name:') ?> <strong><?php echo $_senderHelper->getName(); ?></strong></li>
+                    <li><?php echo $this->__('Phone:') ?> <strong><?php echo $_senderHelper->getPhone() ?></strong></li>
+                    <li><?php echo $this->__('Site:') ?> <strong><?php echo $_senderHelper->getSite(); ?></strong></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
