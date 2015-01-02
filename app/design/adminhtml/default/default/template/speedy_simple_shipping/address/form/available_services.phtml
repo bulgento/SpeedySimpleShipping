@@ -16,13 +16,13 @@
     $predefinedServiceId = 113;
     if(array_key_exists($predefinedServiceId, $optionArray)) :
 ?>
-    <select id="service_type_id" name="service_type_id" class="select" style="width:230px">
+    <select id="service_type_id" name="picking[ServiceTypeId]" class="select" style="width:230px">
         <?php foreach($optionArray as $typeId => $label) : ?>
             <option value="<?php echo $typeId; ?>" <?php if($predefinedServiceId == $typeId) : ?> selected="selected"<?php endif; ?> ><?php echo $label; ?></option>
         <?php endforeach; ?>
     </select>
     <?php else : ?>
-    <select id="service_type_id" name="service_type_id" class="select" style="width:230px">
+    <select id="service_type_id" name="picking[ServiceTypeId]" class="select" style="width:230px">
         <?php $i = 0; ?>
         <?php foreach($optionArray as $typeId => $label) : ?>
             <option value="<?php echo $typeId; ?>" <?php if($i++ == 0) : ?> selected="selected"<?php endif; ?> ><?php echo $label; ?></option>

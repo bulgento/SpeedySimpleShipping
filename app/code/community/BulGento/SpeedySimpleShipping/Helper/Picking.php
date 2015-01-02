@@ -9,6 +9,7 @@ class BulGento_SpeedySimpleShipping_Helper_Picking
     extends Mage_Core_Helper_Abstract
 {
 
+    const PACKAGE_CONTENT_CONFIG_XML = 'carriers/speedyshippingmodule/contents';
 
 
 }

@@ -102,6 +102,16 @@ class BulGento_SpeedySimpleShipping_Model_Api_Service
     }
 
     /**
+     * @param ParamPicking $picking
+     *
+     * @return ResultBOL
+     */
+    public function createBillOfLading(ParamPicking $picking)
+    {
+        return $this->_service->createBillOfLading($picking);
+    }
+
+    /**
      * Wrapper getter function of the SpeedyObjectsFactory helper.
      *
      * Basically I respect the DRY principle and I don't like to repeat the

@@ -1,0 +1,5 @@
+-
+  - all_fields
+  - ClientId : dummy_client_id
+    PartnerName : test_name
+    Phones : test_phone

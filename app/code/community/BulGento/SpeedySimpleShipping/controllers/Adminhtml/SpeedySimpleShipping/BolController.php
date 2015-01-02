@@ -25,24 +25,27 @@ class BulGento_SpeedySimpleShipping_Adminhtml_SpeedySimpleShipping_BolController
     public function createAction()
     {
         $addressData = $this->getRequest()->getPost('speedy_address', array());
+        $pickingData = $this->getRequest()->getPost('picking', array());
 
-        if(!empty($addressData)) {
+        try {
             /** @var BulGento_SpeedySimpleShipping_Helper_Bol $bolHelper */
             $bolHelper = Mage::helper('speedy_simple_shipping/bol');
 
-            $bolResult = $bolHelper->create(1, $addressData, array());
+            $bolHelper->prepare(0, $addressData, $pickingData);
+
+            $resultBol = $bolHelper->createBol();
 
             $this->_ajaxResponse['has_error'] = false;
             $this->_ajaxResponse['message'] = $this->__('The BOL was created.');
 
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($this->_ajaxResponse));
-            return;
+
+        } catch(Exception $e) {
+            $this->_ajaxResponse['has_error'] = true;
+            $this->_ajaxResponse['message'] = $this->__($e->getMessage());
+
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($this->_ajaxResponse));
         }
-
-        $this->_ajaxResponse['has_error'] = true;
-        $this->_ajaxResponse['message'] = $this->__('No address data was passed!');
-
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($this->_ajaxResponse));
     }
 
     /**

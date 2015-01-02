@@ -6,6 +6,7 @@
  */
 
 require_once __DIR__ . '/../../../lib/SpeedyEPS/ver01/ResultCourierServiceExt.class.php';
+require_once __DIR__ . '/../../../lib/SpeedyEPS/ver01/ParamPicking.class.php';
 
 class BulGento_SpeedySimpleShipping_Test_Model_Picking_AvailableServices
     extends BulGento_SpeedySimpleShipping_Test_Case_Abstract

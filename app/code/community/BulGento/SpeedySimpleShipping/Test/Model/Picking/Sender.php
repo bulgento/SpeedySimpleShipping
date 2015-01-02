@@ -19,13 +19,17 @@ class BulGento_SpeedySimpleShipping_Test_Model_Picking_Sender
 
     /**
      * @param array $data
+     * @param array $dataSet
      *
      * @dataProvider dataProvider
      */
-    public function testClassInstance($data)
+    public function testInitialize($dataSet, $data)
     {
-        $sender = new BulGento_SpeedySimpleShipping_Model_Picking_Sender($data['speedy_client_id'], $data['store_id']);
-        $this->assertInstanceOf('BulGento_SpeedySimpleShipping_Model_Picking_Sender', $sender);
+        $sender = new BulGento_SpeedySimpleShipping_Model_Picking_Sender($data);
+
+        $expectations = $this->expected($dataSet);
+
+        $this->assertEquals($expectations->getData('PartnerName'), $sender->getSender()->getPartnerName());
     }
 
 }

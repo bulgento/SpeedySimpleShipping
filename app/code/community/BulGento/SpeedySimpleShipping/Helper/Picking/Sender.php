@@ -46,6 +46,16 @@ class BulGento_SpeedySimpleShipping_Helper_Picking_Sender
         return Mage::getStoreConfig(self::SENDER_SITE_CONFIG_XML, 0);
     }
 
-
+    /**
+     * @return array
+     */
+    public function getPreparedData()
+    {
+        return array(
+            'ClientId' => '88888888888000',
+            'PartnerName' => $this->getName(),
+            'Phones' => $this->getPhone()
+        );
+    }
 
 }

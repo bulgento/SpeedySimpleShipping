@@ -53,7 +53,7 @@ $order = $this->getOrder();
                                     <td colspan="2">
                                         <div class="input-text field-row">
                                             <label for="speedy_address:fullname"><?php echo $this->__('Name:'); ?> <span class="required">*</span></label>
-                                            <input id="speedy_address:fullname" class="input-text required-entry" type="text" name="speedy_address[fullname]" value="<?php echo $order->getShippingAddress()->getName(); ?>" />
+                                            <input id="speedy_address:fullname" class="input-text required-entry" type="text" name="speedy_address[PartnerName]" value="<?php echo $order->getShippingAddress()->getName(); ?>" />
                                         </div>
                                     </td>
                                 </tr>
@@ -62,7 +62,7 @@ $order = $this->getOrder();
                                         <div class="input-text field-row">
                                             <label for="speedy_address:city"><?php echo $this->__('City:'); ?> <span class="required">*</span></label>
                                             <input id="speedy_address:city" class="input-text required-entry" type="text" name="speedy_address[city]" value="" />
-                                            <input type="hidden" name="speedy_address[speedy_site_id]" id="speedy_address:speedy_site_id" value="" />
+                                            <input type="hidden" name="speedy_address[SiteId]" id="speedy_address:speedy_site_id" value="" />
                                             <span id="siteIndicator" style="display: none">
                                                 <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="<?php echo $this->__('Working...') ?>" />
                                             </span>
@@ -92,8 +92,8 @@ $order = $this->getOrder();
                                 <tr class="standard-address">
                                     <td colspan="2">
                                         <label for="speedy_address:speedy_quarter_name"><?php echo $this->__('Quarter:'); ?></label>
-                                        <input style="width: 94%" id="speedy_address:speedy_quarter_name" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_quarter_name]" value="" />
-                                        <input type="hidden" name="speedy_address[speedy_quarter_id]" class="normal-correction-input" id="speedy_address:speedy_quarter_id" value="" />
+                                        <input style="width: 94%" id="speedy_address:speedy_quarter_name" class="input-text normal-correction-input" type="text" name="speedy_address[QuarterName]" value="" />
+                                        <input type="hidden" name="speedy_address[QuarterId]" class="normal-correction-input" id="speedy_address:speedy_quarter_id" value="" />
                                         <span id="quarterIndicator" style="display: none">
                                             <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="<?php echo $this->__('Working...') ?>" />
                                         </span>
@@ -103,8 +103,8 @@ $order = $this->getOrder();
                                 <tr class="standard-address">
                                     <td colspan="2">
                                         <label for="speedy_address:speedy_street"><?php echo $this->__('Street:'); ?></label>
-                                        <input style="width: 94%" id="speedy_address:speedy_street" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_street_name]" value="" />
-                                        <input type="hidden" name="speedy_address[speedy_street_id]" class="normal-correction-input" id="speedy_address:speedy_street_id" value="" />
+                                        <input style="width: 94%" id="speedy_address:speedy_street" class="input-text normal-correction-input" type="text" name="speedy_address[StreetName]" value="" />
+                                        <input type="hidden" name="speedy_address[StreetId]" class="normal-correction-input" id="speedy_address:speedy_street_id" value="" />
                                         <span id="streetIndicator" style="display: none">
                                             <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="Working..." />
                                         </span>
@@ -114,11 +114,11 @@ $order = $this->getOrder();
                                 <tr class="standard-address">
                                     <td style="width: 50%">
                                         <label for="speedy_address:street_number"><?php echo $this->__('Number:'); ?></label>
-                                        <input id="speedy_address:street_number" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_street_number]" value="" />
+                                        <input id="speedy_address:street_number" class="input-text normal-correction-input" type="text" name="speedy_address[StreetNo]" value="" />
                                     </td>
                                     <td style="width: 50%">
                                         <label for="speedy_address:speedy_block_number"><?php echo $this->__('Block:'); ?></label>
-                                        <input id="speedy_address:speedy_block_number" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_block_number]" value="" />
+                                        <input id="speedy_address:speedy_block_number" class="input-text normal-correction-input" type="text" name="speedy_address[BlockNo]" value="" />
                                         <span id="blockIndicator" style="display: none">
                                             <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif') ?>" alt="Working..." />
                                         </span>
@@ -128,18 +128,18 @@ $order = $this->getOrder();
                                 <tr class="standard-address">
                                     <td style="width: 50%">
                                         <label for="speedy_address:entrance"><?php echo $this->__('Entrance:'); ?></label>
-                                        <input id="speedy_address:entrance" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_entrance]" value="" />
+                                        <input id="speedy_address:entrance" class="input-text normal-correction-input" type="text" name="speedy_address[EntranceNo]" value="" />
                                     </td>
                                     <td style="width: 50%">
                                         <label for="speedy_address:floor"><?php echo $this->__('Floor:'); ?></label>
-                                        <input id="speedy_address:floor" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_floor]" value="" />
+                                        <input id="speedy_address:floor" class="input-text normal-correction-input" type="text" name="speedy_address[FloorNo]" value="" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 50%">
                                         <div class="standard-address">
                                             <label for="speedy_address:apartment"><?php echo $this->__('Apartment:'); ?></label>
-                                            <input id="speedy_address:apartment" class="input-text normal-correction-input" type="text" name="speedy_address[speedy_apartment]" value="" />
+                                            <input id="speedy_address:apartment" class="input-text normal-correction-input" type="text" name="speedy_address[ApartmentNo]" value="" />
                                         </div>
                                     </td>
                                     <td style="width: 50%">
@@ -157,13 +157,16 @@ $order = $this->getOrder();
                                 </tr>
                                 <tr>
                                     <td style="width: 50%">
+                                        <label for="speedy_address_note"><?php echo $this->__('Note to address:') ?></label>
+                                        <textarea id="speedy_address_note" name="speedy_address[AddressNote]" style="width: 140px; height: 70px; resize: none; "></textarea>
+                                        <br />
                                     </td>
                                     <td style="width: 50%">
                                         <div class="input-text field-row">
                                             <div id="clone-phone-wrapper">
                                                 <label for="speedy_address:telephone"><?php echo $this->__('Phone:'); ?> <span class="required">*</span></label>
                                                 <div>
-                                                    <input id="speedy_address:telephone" class="input-text required-entry" type="text" name="speedy_address[telephone][0]" value="" />
+                                                    <input id="speedy_address:telephone" class="input-text required-entry" type="text" name="speedy_address[Telephones][0]" value="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -207,18 +210,15 @@ $order = $this->getOrder();
                                 <td>
                                     <div id="taking_dates_select_container"></div>
                                 <td>
-                                    <select name="packages_number" class="select" style="width:60px">
+                                    <select name="picking[ParcelsCount]" class="select" style="width:60px">
                                         <?php for($i = 1; $i <= 10; $i++) : ?>
                                             <option value="<?php echo $i ?>"><?php echo $i ?></option>
                                         <?php endfor; ?>
                                     </select>
                                 </td>
                                 <td>
-                                    <label for="speedy_address_note"><?php echo $this->__('Note to address:') ?></label>
-                                    <textarea id="speedy_address_note" name="speedy_address[speedy_address_note]" style="width: 190px; height: 100px; resize: none; "></textarea>
-                                    <br />
                                     <label for="client_note"><?php echo $this->__('Client\'s note:') ?></label>
-                                    <textarea id="client_note" name="client_note" style="width: 190px; height: 100px; resize: none; "></textarea>
+                                    <textarea id="client_note" name="picking[NoteClient]" style="width: 190px; height: 100px; resize: none; "></textarea>
                                 </td>
                             </tr>
                         </tbody>
@@ -401,7 +401,7 @@ document.observe("dom:loaded", function() {
             onSuccess: function(response) {
                 var data = response.responseText.evalJSON(true);
 
-                var takingDaysSelectHtml = '<select id="taking_days">';
+                var takingDaysSelectHtml = '<select id="taking_days" name="picking[TakingDate]">';
 
                 data.each(function(item) {
                     takingDaysSelectHtml += '<option value="' + item.taking_day + '">';
@@ -481,7 +481,7 @@ document.observe("dom:loaded", function() {
                     onSuccess: function(response) {
                         var data = response.responseText.evalJSON(true);
 
-                        var servicesSelectHtml = '<select id="service_type_id">';
+                        var servicesSelectHtml = '<select id="service_type_id" name="picking[ServiceTypeId]">';
 
                         data.each(function(item) {
                             servicesSelectHtml += '<option value="' + item.service_type_id + '">';

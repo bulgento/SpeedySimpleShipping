@@ -11,14 +11,35 @@ class BulGento_SpeedySimpleShipping_Model_Picking
     /** @var ParamPicking */
     protected $_picking;
 
-    const PACKAGE_CONTENT_CONFIG_XML = 'carriers/speedyshippingmodule/contents';
-
     /** This constant is used to mark the BOL as created from Magento */
-    const MAGENTO_CLIENT_SYSTEM_ID  = 1307306100;
-    const PICKING_PACK_ID           = '.';
+    const MAGENTO_CLIENT_SYSTEM_ID   = 1307306100;
 
-    protected $_packing             = 'Плик';
-    protected $_weightDeclared      = 1;
+    const DEFAULT_PICKING_PACK_ID       = '.';
+    const DEFAULT_PACKING               = 'Плик';
+    const DEFAULT_WEIGHT_DECLARED       = 1;
+    const NO_CASH_ON_DELIVERY_AMOUNT    = 0;
+    const DEFAULT_CONTENT               = 'Glass';
+    const DEFAULT_PAYER_TYPE            = 0;
+
+    /** @var array */
+    private $_pickingDataFieldNames = array(
+        'ClientSystemId'        => self::MAGENTO_CLIENT_SYSTEM_ID,
+        'PackId'                => self::DEFAULT_PICKING_PACK_ID,
+        'Packing'               => self::DEFAULT_PACKING,
+        'Palletized'            => false,
+        'Contents'              => self::DEFAULT_CONTENT,
+        'PayerType'             => self::DEFAULT_PAYER_TYPE,
+        'WeightDeclared'        => self::DEFAULT_WEIGHT_DECLARED,
+        'WillBringToOffice'     => null,
+        'Ref1'                  => null,
+        'Ref2'                  => null,
+        'ServiceTypeId'         => null,
+        'OfficeToBeCalledId'    => null,
+        'ParcelsCount'          => null,
+        'TakingDate'            => null,
+        'NoteClient'            => null,
+        'AmountCodBase'         => self::NO_CASH_ON_DELIVERY_AMOUNT
+    );
 
     /**
      * @param BulGento_SpeedySimpleShipping_Model_Picking_Sender $sender
@@ -28,7 +49,7 @@ class BulGento_SpeedySimpleShipping_Model_Picking
     public function __construct(
         BulGento_SpeedySimpleShipping_Model_Picking_Sender $sender,
         BulGento_SpeedySimpleShipping_Model_Picking_Receiver $receiver,
-        $pickingData
+        array $pickingData
     ) {
         $this->_picking = $this->_getSpeedyObjectsFactory()->spawnParamPickingObject();
 
@@ -38,50 +59,27 @@ class BulGento_SpeedySimpleShipping_Model_Picking
     }
 
     /**
-     * @param Varien_Object $pickingData
+     * @return ParamPicking
      */
-    private function _preparePickingSpecificData(Varien_Object $pickingData)
+    public function getPicking()
     {
-        $this->_picking->setClientSystemId(self::MAGENTO_CLIENT_SYSTEM_ID);
-        $this->_picking->setPacking($pickingData->getPacking());
-        $this->_picking->setPalletized(false);
-        $this->_picking->setPackId(self::PICKING_PACK_ID);
-        $this->_picking->setContents($pickingData->getContents());
+        return $this->_picking;
+    }
 
-        /** The sender will pay */
-        $this->_picking->setPayerType(0);
-        $this->_picking->setWeightDeclared($pickingData->getWeightDeclared());
-        $this->_picking->setWillBringToOffice(null); // Офис, в който подателя ще достави пратката. Ако е null, куриер ще я вземе от адреса на подателя
+    /**
+     * @param array $pickingData
+     */
+    private function _preparePickingSpecificData(array $pickingData)
+    {
+        foreach($this->_pickingDataFieldNames as $addressFieldName => $defaultValue) {
+            $testValue = isset($pickingData[$addressFieldName]) ? $pickingData[$addressFieldName] : null;
 
-        /** Reference */
-        $this->_picking->setRef1($pickingData->getRef1());
+            $value = empty($testValue) ? $defaultValue : $testValue;
 
-        /** Set service type id */
-        $serviceTypeId = Mage::app()->getRequest()->getPost('service_type_id');
+            $func = 'set'.$addressFieldName;
+            $this->_picking->$func($value);
 
-        if ($serviceTypeId) {
-            $this->_picking->setServiceTypeId($serviceTypeId);
         }
-
-        /** Refactoring Part of this logic should go in to the $receiver */
-        if ($pickingData->getSpeedyOfficeId()) {
-            $this->_picking->setOfficeToBeCalledId($pickingData->getSpeedyOfficeId());
-        }
-
-        /** The number of the packages, that the products */
-        $parcelsCount = Mage::app()->getRequest()->getPost('packages_number');
-        $this->_picking->setParcelsCount($parcelsCount);
-
-        $this->_picking->setTakingDate(Mage::app()->getRequest()->getPost('taking_date'));
-
-        /** Investigate this shit!  */
-        $note = Mage::app()->getRequest()->getPost('client_note', null);
-
-        if (!is_null($note)) {
-            $this->_picking->setNoteClient($note);
-        }
-
-        $this->_picking->setAmountCodBase(Mage::app()->getRequest()->getPost('order_amount', 0));
     }
 
     /**

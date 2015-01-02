@@ -20,13 +20,7 @@ class BulGento_SpeedySimpleShipping_Model_Picking_Receiver
         'QuarterId',
         'StreetId',
         'QuarterName',
-        'AddressNote'
-    );
-
-    /** @var array */
-    private $_partnerDataFieldNames = array(
-        'PartnerName',
-        'Telephones'
+        'AddressNote',
     );
 
     /** @var ParamClientData */

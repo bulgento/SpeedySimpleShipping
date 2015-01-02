@@ -24,7 +24,7 @@ class BulGento_SpeedySimpleShipping_Test_Model_Picking
             ->disableOriginalConstructor()
             ->getMock();
 
-        $pickingData = new Varien_Object();
+        $pickingData = array();
 
         $this->_model = new BulGento_SpeedySimpleShipping_Model_Picking($sender, $receiver, $pickingData);
     }

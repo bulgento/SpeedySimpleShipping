@@ -28,8 +28,7 @@ class BulGento_SpeedySimpleShipping_Test_Block_Adminhtml_Address_Form
 
         $this->assertInstanceOf('Mage_Sales_Model_Order', $block->getOrder());
         $this->assertEquals($salesShipmentData['store_id'], $block->getStoreId());
-        $this->assertEquals($this->_getUrl('speedySimpleShipping_bol/create', array('shipment_id' => $salesShipmentData['entity_id'])), $block->getSubmitFormAction());
-        $this->assertEquals($this->_getUrl('speedySimpleShipping_bol/create', array('shipment_id' => $salesShipmentData['entity_id'])), $block->getSubmitFormAction());
+        $this->assertEquals($this->_getUrl('adminhtml/speedySimpleShipping_bol/create', array('shipment_id' => $salesShipmentData['entity_id'])), $block->getSubmitFormAction());
         $this->assertEquals('Tsvetan Stoychev', $block->getShippingAddress()->getName());
 
         Mage::unregister('current_shipment');

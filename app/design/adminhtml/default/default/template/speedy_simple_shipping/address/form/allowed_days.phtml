@@ -8,7 +8,7 @@
 $optionArray = $this->getDateOptions();
 ?>
 <?php if(!empty($optionArray)) : ?>
-    <select name="taking_date" class="select" style="width:90px">
+    <select name="picking[TakingDate]" class="select" style="width:90px">
         <?php foreach($optionArray as $date) : ?>
             <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
         <?php endforeach; ?>

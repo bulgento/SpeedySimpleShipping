@@ -30,7 +30,7 @@ class BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form
      */
     public function getSubmitFormAction()
     {
-        return $this->getUrl('speedySimpleShipping_bol/create', array('shipment_id' => $this->_shipment->getId()));
+        return $this->getUrl('adminhtml/speedySimpleShipping_bol/create', array('shipment_id' => $this->_shipment->getId()));
     }
 
     /**

@@ -8,23 +8,22 @@
 class BulGento_SpeedySimpleShipping_Model_Picking_Sender
 {
 
-    const SENDER_PHONE_CONFIG_XML_PATH  = 'speedy_simple_shipping/sender/contact_telephone';
-    const SENDER_NAME_CONFIG_XML_PATH   = 'speedy_simple_shipping/sender/contact_name';
-
     /** @var ParamClientData */
     private $_sender;
 
     /**
-     * @param int $clientId
-     * @param int $storeId
+     * @param array $data
      */
-    public function __construct($clientId, $storeId)
+    public function __construct($data)
     {
         $this->_sender = $this->_getSpeedyObjectsFactory()->spawnParamClientDataObject();
 
-        $this->_sender->setClientId($clientId);
-        $this->_sender->setPhones($this->_getPhonesParam($storeId));
-        $this->_sender->setPartnerName($this->_getPartnerName($storeId));
+        $this->_sender->setClientId($data['ClientId']);
+        $this->_sender->setPhones($this->_getPhonesParam($data['Phones']));
+
+        if(empty($data['ClientId'])) {
+            $this->_sender->setPartnerName($data['PartnerName']);
+        }
     }
 
     /**
@@ -38,13 +37,11 @@ class BulGento_SpeedySimpleShipping_Model_Picking_Sender
     /**
      * Prepare the phones param in format suitable for the Speedy API call
      *
-     * @param $storeId
+     * @param string $phoneNumber
      * @return array
      */
-    private function _getPhonesParam($storeId)
+    private function _getPhonesParam($phoneNumber)
     {
-        $phoneNumber = $this->_getPhone($storeId);
-
         if ($phoneNumber) {
             $senderPhone = $this->_getSpeedyObjectsFactory()->spawnParamPhoneNumberObject();
             $senderPhone->setNumber($phoneNumber);
@@ -52,28 +49,6 @@ class BulGento_SpeedySimpleShipping_Model_Picking_Sender
         }
 
         return array();
-    }
-
-    /**
-     * Get the sender phone number from the config
-     *
-     * @param $storeId
-     * @return mixed
-     */
-    private function _getPhone($storeId)
-    {
-        return Mage::getStoreConfig(self::SENDER_PHONE_CONFIG_XML_PATH, $storeId);
-    }
-
-    /**
-     * Get the sender name from the config
-     *
-     * @param $storeId
-     * @return mixed
-     */
-    private function _getPartnerName($storeId)
-    {
-        return Mage::getStoreConfig(self::SENDER_NAME_CONFIG_XML_PATH, $storeId);
     }
 
     /**

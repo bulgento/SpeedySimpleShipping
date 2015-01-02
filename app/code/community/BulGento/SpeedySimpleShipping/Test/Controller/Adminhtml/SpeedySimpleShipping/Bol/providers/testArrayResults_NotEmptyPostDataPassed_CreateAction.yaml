@@ -1,0 +1,25 @@
+-
+  - speedy_address:
+      PartnerName: Tsvetan Stoychev
+      city: СОФИЯ
+      SiteId: 68134
+      speedy_office_locator: 
+      speedy_office_id: 
+      QuarterName: жк ДРУЖБА
+      QuarterId: 5006
+      StreetName: ул. ДЕЛИЙСКА ВОДЕНИЦА
+      StreetId: 1752
+      StreetNo: 19
+      BlockNo: 60
+      EntranceNo: A
+      FloorNo: 15
+      ApartmentNo: 10
+      AddressNote: Test not
+      Telephones: [+359 883 33 33 33]
+    picking:
+      ServiceTypeId: 110
+      TakingDate: 2015-01-05
+      ParcelsCount: 4
+      NoteClient: Test client note
+    store_id : 0
+
