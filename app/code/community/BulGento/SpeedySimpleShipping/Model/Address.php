@@ -11,9 +11,16 @@ class BulGento_SpeedySimpleShipping_Model_Address
     /** @var BulGento_SpeedySimpleShipping_Model_Api_Service */
     protected $_speedyApiServiceModel;
 
-    function __construct(BulGento_SpeedySimpleShipping_Model_Api_Service $service)
+    /** @var BulGento_SpeedySimpleShipping_Helper_Address_Cache */
+    protected $_addressCacheHelper;
+
+    function __construct(
+        BulGento_SpeedySimpleShipping_Model_Api_Service $service,
+        BulGento_SpeedySimpleShipping_Helper_Address_Cache $addressCacheHelper
+    )
     {
         $this->_speedyApiServiceModel = $service;
+        $this->_addressCacheHelper = $addressCacheHelper;
     }
 
     /**
@@ -22,6 +29,10 @@ class BulGento_SpeedySimpleShipping_Model_Address
      */
     public function listSties($cityName)
     {
+        if($this->_addressCacheHelper->hasCache(func_get_args(), __FUNCTION__)) {
+            return $this->_addressCacheHelper->getCache(func_get_args(), __FUNCTION__);
+        }
+
         try {
             $sites = $this->_speedyApiServiceModel->listSites(null, $cityName);
         } catch (ServerException $se) {
@@ -29,19 +40,21 @@ class BulGento_SpeedySimpleShipping_Model_Address
         }
 
         if (isset($sites)) {
+            $tpl = array();
+
             if(count($sites) == 1) {
-                return array($this->_prepareSiteArray($sites[0]));
+                $tpl = array($this->_prepareSiteArray($sites[0]));
             }
 
             if(count($sites) > 1) {
-                $tpl = array();
-
                 foreach ($sites as $site) {
                     $tpl[] = $this->_prepareSiteArray($site);
                 }
-
-                return $tpl;
             }
+
+            $this->_addressCacheHelper->saveCache(func_get_args(), __FUNCTION__, $tpl);
+
+            return $tpl;
         }
 
         return false;
@@ -72,6 +85,10 @@ class BulGento_SpeedySimpleShipping_Model_Address
      */
     public function listOffices($cityId, $officeName)
     {
+        if($this->_addressCacheHelper->hasCache(func_get_args(), __FUNCTION__)) {
+            return $this->_addressCacheHelper->getCache(func_get_args(), __FUNCTION__);
+        }
+
         try {
             $offices = $this->_speedyApiServiceModel->listOffices($officeName, $cityId);
         } catch (Exception $e) {
@@ -91,6 +108,8 @@ class BulGento_SpeedySimpleShipping_Model_Address
                 );
             }
 
+            $this->_addressCacheHelper->saveCache(func_get_args(), __FUNCTION__, $tpl);
+
             return $tpl;
         }
 
@@ -105,6 +124,10 @@ class BulGento_SpeedySimpleShipping_Model_Address
      */
     public function listQuarters($cityId, $officeName)
     {
+        if($this->_addressCacheHelper->hasCache(func_get_args(), __FUNCTION__)) {
+            return $this->_addressCacheHelper->getCache(func_get_args(), __FUNCTION__);
+        }
+
         try {
             $quarters = $this->_speedyApiServiceModel->listQuarters($officeName, $cityId);
         } catch (ServerException $se) {
@@ -131,6 +154,8 @@ class BulGento_SpeedySimpleShipping_Model_Address
                 );
             }
 
+            $this->_addressCacheHelper->saveCache(func_get_args(), __FUNCTION__, $tpl);
+
             return $tpl;
         }
 
@@ -145,6 +170,10 @@ class BulGento_SpeedySimpleShipping_Model_Address
      */
     public function listStreets($cityId, $streetName)
     {
+        if($this->_addressCacheHelper->hasCache(func_get_args(), __FUNCTION__)) {
+            return $this->_addressCacheHelper->getCache(func_get_args(), __FUNCTION__);
+        }
+
         try {
             $streets = $this->_speedyApiServiceModel->listStreets($streetName, $cityId);
         } catch (Exception $e) {
@@ -160,6 +189,8 @@ class BulGento_SpeedySimpleShipping_Model_Address
                     'value' => $street->getId()
                 );
             }
+
+            $this->_addressCacheHelper->saveCache(func_get_args(), __FUNCTION__, $tpl);
 
             return $tpl;
         }

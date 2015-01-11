@@ -1,0 +1,4 @@
+has_cache:
+  expected: true
+no_cache:
+  expected: false

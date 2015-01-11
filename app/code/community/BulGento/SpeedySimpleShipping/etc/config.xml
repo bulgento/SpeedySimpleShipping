@@ -22,8 +22,25 @@
         <models>
             <speedy_simple_shipping>
                 <class>BulGento_SpeedySimpleShipping_Model</class>
+                <resourceModel>speedy_simple_shipping_resource</resourceModel>
             </speedy_simple_shipping>
+            <speedy_simple_shipping_resource>
+                <class>BulGento_SpeedySimpleShipping_Model_Resource</class>
+                <deprecatedNode>speedy_simple_shipping_mysql4</deprecatedNode>
+                <entities>
+                    <address_cache>
+                        <table>speedy_simple_shipping_address_cache</table>
+                    </address_cache>
+                </entities>
+            </speedy_simple_shipping_resource>
         </models>
+        <resources>
+            <speedy_simple_shipping_setup>
+                <setup>
+                    <module>BulGento_SpeedySimpleShipping</module>
+                </setup>
+            </speedy_simple_shipping_setup>
+        </resources>
         <blocks>
             <speedy_simple_shipping>
                 <class>BulGento_SpeedySimpleShipping_Block</class>

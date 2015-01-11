@@ -19,7 +19,7 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
      *
      * @dataProvider dataProvider
      */
-    public function testListSites($dataSet, $data)
+    public function testListSitesGetResultFromCache($dataSet, $data)
     {
         $stdObjectsArray = array();
 
@@ -32,14 +32,73 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
             ->disableOriginalConstructor()
             ->getMock();
 
-        $apiMock->expects($this->any())
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(true));
+
+        $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->once())
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
+        /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
+
+        $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSties('doesnt mattedr')));
+    }
+
+    /**
+     * @param string $dataSet
+     * @param array $data
+     *
+     * @dataProvider dataProvider
+     */
+    public function testListSitesGetResultFromApiAndSaveCache($dataSet, $data)
+    {
+        $stdObjectsArray = array();
+
+        foreach($data as $d) {
+            $stdObjectsArray[] = new ResultSite($this->_arrayToObject($d));
+        }
+
+        $apiMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Model_Api_Service')
+            ->setMethods(array('listSites'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $apiMock->expects($this->once())
             ->method('listSites')
             ->will($this->returnValue($stdObjectsArray));
 
-        /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
-        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock);
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(false));
 
         $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(1))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
+        /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
 
         $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSties('doesnt mattedr')));
     }
@@ -59,7 +118,7 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
      *
      * @dataProvider dataProvider
      */
-    public function testListOffices($dataSet, $data)
+    public function testListOfficesGetResultFromCache($dataSet, $data)
     {
         $stdObjectsArray = array();
 
@@ -76,8 +135,26 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
             ->method('listOffices')
             ->will($this->returnValue($stdObjectsArray));
 
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(true));
+
+        $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->once())
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
         /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
-        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock);
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
 
         $offices = $addressModel->listOffices('random_city_id', '');
 
@@ -92,7 +169,58 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
      *
      * @dataProvider dataProvider
      */
-    public function testListQuarters($dataSet, $data)
+    public function testListOfficesGetResultFromApiAndSaveCache($dataSet, $data)
+    {
+        $stdObjectsArray = array();
+
+        foreach($data as $d) {
+            $stdObjectsArray[] = new ResultOffice($this->_arrayToObject($d));
+        }
+
+        $apiMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Model_Api_Service')
+            ->setMethods(array('listOffices'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $apiMock->expects($this->any())
+            ->method('listOffices')
+            ->will($this->returnValue($stdObjectsArray));
+
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(false));
+
+        $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(1))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
+        /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
+
+        $offices = $addressModel->listOffices('random_city_id', '');
+
+        $expectations = $this->expected($dataSet);
+
+        $this->assertEquals(json_encode($expectations->getData()), json_encode($offices));
+    }
+
+    /**
+     * @param string $dataSet
+     * @param array $data
+     *
+     * @dataProvider dataProvider
+     */
+    public function testListQuartersGetResultFromCache($dataSet, $data)
     {
         $stdObjectsArray = array();
 
@@ -109,12 +237,77 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
             ->method('listQuarters')
             ->will($this->returnValue($stdObjectsArray));
 
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(true));
+
+        $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->once())
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
         /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
-        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock);
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
 
         $offices = $addressModel->listQuarters('any id', 'any name');
 
+        $this->assertEquals(json_encode($expectations->getData()), json_encode($offices));
+    }
+
+    /**
+     * @param string $dataSet
+     * @param array $data
+     *
+     * @dataProvider dataProvider
+     */
+    public function testListQuartersGetResultFromApiAndSaveCache($dataSet, $data)
+    {
+        $stdObjectsArray = array();
+
+        foreach($data as $d) {
+            $stdObjectsArray[] = new ResultQuarter($this->_arrayToObject($d));
+        }
+
+        $apiMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Model_Api_Service')
+            ->setMethods(array('listQuarters'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $apiMock->expects($this->any())
+            ->method('listQuarters')
+            ->will($this->returnValue($stdObjectsArray));
+
+        $addressCacheMock = $this->getMockBuilder('BulGento_SpeedySimpleShipping_Helper_Address_Cache')
+            ->setMethods(array('hasCache', 'getCache', 'saveCache'))
+            ->getMock();
+
+        $addressCacheMock->expects($this->once())
+            ->method('hasCache')
+            ->will($this->returnValue(false));
+
         $expectations = $this->expected($dataSet);
+
+        $addressCacheMock->expects($this->exactly(0))
+            ->method('getCache')
+            ->will($this->returnValue($expectations->getData()));
+
+        $addressCacheMock->expects($this->exactly(1))
+            ->method('saveCache')
+            ->will($this->returnValue($addressCacheMock));
+
+        /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
+        $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
+
+        $offices = $addressModel->listQuarters('any id', 'any name');
 
         $this->assertEquals(json_encode($expectations->getData()), json_encode($offices));
     }

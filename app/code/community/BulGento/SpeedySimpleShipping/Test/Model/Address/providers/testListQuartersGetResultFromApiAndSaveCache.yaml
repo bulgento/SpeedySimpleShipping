@@ -1,0 +1,32 @@
+-
+  - more_than_one_result
+  -
+    - id: 47
+      type: жк
+      name: МЛАДОСТ 1
+      actualName:
+
+    - id: 48
+      type: жк
+      name: МЛАДОСТ 1А
+      actualName:
+
+    - id: 49
+      type: жк
+      name: МЛАДОСТ 2
+      actualName:
+
+    - id: 50
+      type: жк
+      name: МЛАДОСТ 3
+      actualName:
+
+    - id: 51
+      type: жк
+      name: МЛАДОСТ 4
+      actualName:
+
+    - id: 389
+      type: жк
+      name: ПЕРЛИТЕ НА МЛАДОСТ
+      actualName:
