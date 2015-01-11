@@ -1,6 +1,6 @@
 -
   - params:
       - test_save_param
-    callerName: listSties
+    callerName: listSites
     data:
       - test_key: test_value

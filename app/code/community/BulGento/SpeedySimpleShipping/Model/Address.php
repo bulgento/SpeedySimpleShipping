@@ -27,7 +27,7 @@ class BulGento_SpeedySimpleShipping_Model_Address
      * @param string $cityName
      * @return array|bool
      */
-    public function listSties($cityName)
+    public function listSites($cityName)
     {
         if($this->_addressCacheHelper->hasCache(func_get_args(), __FUNCTION__)) {
             return $this->_addressCacheHelper->getCache(func_get_args(), __FUNCTION__);

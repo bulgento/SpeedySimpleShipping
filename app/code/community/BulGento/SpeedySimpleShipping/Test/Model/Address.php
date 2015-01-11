@@ -53,7 +53,7 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
         /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
         $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
 
-        $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSties('doesnt mattedr')));
+        $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSites('doesnt mattedr')));
     }
 
     /**
@@ -100,14 +100,14 @@ class BulGento_SpeedySimpleShipping_Test_Model_Address
         /** @var BulGento_SpeedySimpleShipping_Model_Address $addressModel */
         $addressModel = new BulGento_SpeedySimpleShipping_Model_Address($apiMock, $addressCacheMock);
 
-        $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSties('doesnt mattedr')));
+        $this->assertEquals(json_encode($expectations->getData()), json_encode($addressModel->listSites('doesnt mattedr')));
     }
 
     /**
      *
      * @todo: Cover the case when we have exception
      */
-    public function testListStiesException()
+    public function testListSitesException()
     {
 
     }

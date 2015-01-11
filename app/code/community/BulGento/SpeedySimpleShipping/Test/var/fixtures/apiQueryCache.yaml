@@ -1,6 +1,6 @@
 tables:
   speedy_simple_shipping/address_cache:
-    - cache_key: "doesnt matterlistSties"
+    - cache_key: "doesnt matterlistSites"
       cached_data: "a:1:{i:0;a:7:{s:2:\"id\";i:55052;s:4:\"type\";s:5:\"гр.\";s:4:\"name\";s:18:\"ПАВЛИКЕНИ\";s:12:\"municipality\";s:18:\"ПАВЛИКЕНИ\";s:9:\"post_code\";i:5200;s:6:\"region\";s:27:\"ВЕЛИКО ТЪРНОВО\";s:20:\"is_full_nomenclature\";s:2:\"NO\";}}"
-    - cache_key: "pavlikenilistSties"
+    - cache_key: "pavlikenilistSites"
       cached_data: "a:1:{i:0;a:7:{s:2:\"id\";i:55052;s:4:\"type\";s:5:\"гр.\";s:4:\"name\";s:18:\"ПАВЛИКЕНИ\";s:12:\"municipality\";s:18:\"ПАВЛИКЕНИ\";s:9:\"post_code\";s:4:\"5200\";s:6:\"region\";s:27:\"ВЕЛИКО ТЪРНОВО\";s:20:\"is_full_nomenclature\";s:2:\"NO\";}}"

@@ -19,7 +19,7 @@ class BulGento_SpeedySimpleShipping_Adminhtml_SpeedySimpleShipping_AjaxControlle
         $cityName = $this->_request->getParam('term');
 
         $this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($this->_getAddressHelper()->listSties($cityName)));
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($this->_getAddressHelper()->listSites($cityName)));
     }
 
     public function fetch_officesAction()

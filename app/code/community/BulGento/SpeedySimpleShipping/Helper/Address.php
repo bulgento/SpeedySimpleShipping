@@ -14,14 +14,14 @@ class BulGento_SpeedySimpleShipping_Helper_Address
      *
      * @return array
      */
-    public function listSties($cityName)
+    public function listSites($cityName)
     {
         $address = new BulGento_SpeedySimpleShipping_Model_Address(
             $this->_getServiceApiHelper()->getService(),
             $this->_getAddressCacheHelper()
         );
 
-        return $address->listSties($cityName);
+        return $address->listSites($cityName);
     }
 
     /**
