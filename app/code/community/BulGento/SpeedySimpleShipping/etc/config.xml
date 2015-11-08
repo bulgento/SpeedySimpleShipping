@@ -9,7 +9,7 @@
 <config>
     <modules>
         <BulGento_SpeedySimpleShipping>
-            <version>0.1.0-dev2</version>
+            <version>0.1.0dev3</version>
         </BulGento_SpeedySimpleShipping>
     </modules>
 
@@ -31,6 +31,9 @@
                     <address_cache>
                         <table>speedy_simple_shipping_address_cache</table>
                     </address_cache>
+                    <address_book_entity>
+                        <table>speedy_simple_shipping_address_book_entity</table>
+                    </address_book_entity>
                 </entities>
             </speedy_simple_shipping_resource>
         </models>

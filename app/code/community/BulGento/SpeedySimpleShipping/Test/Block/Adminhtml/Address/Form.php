@@ -9,6 +9,12 @@ class BulGento_SpeedySimpleShipping_Test_Block_Adminhtml_Address_Form
     extends EcomDev_PHPUnit_Test_Case
 {
 
+    public function setUp()
+    {
+        @session_start();
+        parent::setUp();
+    }
+
     /**
      * @param array $salesOrderData
      * @param array $salesShipmentData
@@ -86,51 +92,6 @@ class BulGento_SpeedySimpleShipping_Test_Block_Adminhtml_Address_Form
     private function _getUrl($url, $params)
     {
         return Mage::helper('adminhtml')->getUrl($url, $params);
-    }
-
-    /**
-     * @param array $salesOrderData
-     * @param array $salesShipmentData
-     * @param array $salesOrderBillingAddressData
-     * @param array $salesOrderShippingAddressData
-     *
-     * @loadFixture
-     * @dataProvider dataProvider
-     */
-    public function testGetOrderCommentsHtml($salesOrderData, $salesShipmentData, $salesOrderBillingAddressData, $salesOrderShippingAddressData)
-    {
-        /** @var BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form $formBlockMock */
-        $commentBlockMock = $this->getBlockMock('speedy_simple_shipping/adminhtml_billOfLading_orderComments', array('getArea', '_getAllowSymlinks'));
-
-        $commentBlockMock
-            ->expects($this->any())
-            ->method('getArea')
-            ->will($this->returnValue('adminhtml'));
-
-        $commentBlockMock
-            ->expects($this->any())
-            ->method('_getAllowSymlinks')
-            ->will($this->returnValue(true));
-
-        $this->replaceByMock(
-            'block',
-            'speedy_simple_shipping/adminhtml_billOfLading_orderComments',
-            $commentBlockMock
-        );
-
-        $shipment = $this->_getPreparedShipment($salesOrderData, $salesShipmentData, $salesOrderBillingAddressData, $salesOrderShippingAddressData);
-
-        Mage::register('current_shipment', $shipment);
-
-        /** @var BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form $formBlock */
-        $formBlock = Mage::app()->getLayout()->createBlock('speedy_simple_shipping/adminhtml_address_form');
-
-        $formBlock->getOrderCommentsHtml();
-
-        $this->assertTrue((bool) strpos($formBlock->getOrderCommentsHtml(), 'Test comment'));
-
-        Mage::unregister('current_shipment');
-
     }
 
 }

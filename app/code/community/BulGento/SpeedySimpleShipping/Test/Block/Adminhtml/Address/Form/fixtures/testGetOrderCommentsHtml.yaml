@@ -1,4 +1,7 @@
 tables:
+  sales/order:
+    - entity_id: 1
+
   sales/order_status_history:
     - entity_id: 1
       parent_id: 1

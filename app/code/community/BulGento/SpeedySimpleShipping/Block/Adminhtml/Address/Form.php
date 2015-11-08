@@ -82,6 +82,4 @@ class BulGento_SpeedySimpleShipping_Block_Adminhtml_Address_Form
         return $block->toHtml();
     }
 
-
-
 }

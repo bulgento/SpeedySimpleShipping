@@ -7,6 +7,18 @@
  */
 -->
 <layout>
+    <adminhtml_speedysimpleshipping_addressbook_index>
+        <referense name="head">
+            <action method="setTitle" translate="title"><title>Speedy Address Book</title></action>
+        </referense>
+        <reference name="menu">
+            <action method="setActive"><menupath>speedy_simple_shipping/addressBook</menupath></action>
+        </reference>
+        <reference name="content">
+            <block type="speedy_simple_shipping/adminhtml_addressBook_grid" name="speedy_addressBook_list" />
+        </reference>
+    </adminhtml_speedysimpleshipping_addressbook_index>
+
     <adminhtml_sales_order_shipment_view>
         <reference name="content">
             <block type="speedy_simple_shipping/adminhtml_address_form" template="speedy_simple_shipping/address/form.phtml" />
