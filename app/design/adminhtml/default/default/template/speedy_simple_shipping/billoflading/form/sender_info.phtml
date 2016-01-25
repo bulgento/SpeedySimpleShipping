@@ -21,10 +21,10 @@ $_senderHelper = $this->getSenderHelper();
         <tr>
             <td>
                 <ul>
-                    <li><?php echo $this->__('Api Username:') ?> <input value="<?php echo $_senderHelper->getApiUsername(); ?>" disabled="disabled" /></li>
+                    <li><?php echo $this->__('Api Username:') ?> <input value="<?php echo $_senderHelper->getApiUsername($this->getRequest()->getParam('store_id')); ?>" disabled="disabled" /></li>
                     <li><?php echo $this->__('Name:') ?> <input value="<?php echo $_senderHelper->getName(); ?>" /></li>
                     <li><?php echo $this->__('Phone:') ?> <input value="<?php echo $_senderHelper->getPhone() ?>" /></li>
-                    <li><?php echo $this->__('Site:') ?> <input value="<?php echo $_senderHelper->getSite(); ?>" />g</li>
+                    <li><?php echo $this->__('Site:') ?> <input value="<?php echo $_senderHelper->getSite(); ?>" /></li>
                 </ul>
             </td>
         </tr>
