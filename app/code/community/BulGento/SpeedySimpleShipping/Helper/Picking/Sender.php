@@ -10,6 +10,7 @@ class BulGento_SpeedySimpleShipping_Helper_Picking_Sender
 {
 
     const SENDER_API_USERNAME_CONFIG_XML = 'carriers/speedy_simple_shipping/api_username';
+    const SENDER_API_PASSWORD_CONFIG_XML = 'carriers/speedy_simple_shipping/api_password';
     const SENDER_PHONE_NUMBER_CONFIG_XML = 'carriers/speedy_simple_shipping/sender_phone_number';
     const SENDER_NAME_CONFIG_XML         = 'carriers/speedy_simple_shipping/sender_name';
     const SENDER_SITE_CONFIG_XML         = 'carriers/speedy_simple_shipping/sender_site';
@@ -23,11 +24,23 @@ class BulGento_SpeedySimpleShipping_Helper_Picking_Sender
     }
 
     /**
+     * @param int $storeId
+     *
      * @return string
      */
-    public function getApiUsername()
+    public function getApiUsername($storeId)
     {
-        return Mage::getStoreConfig(self::SENDER_API_USERNAME_CONFIG_XML, 0);
+        return Mage::getStoreConfig(self::SENDER_API_USERNAME_CONFIG_XML, $storeId);
+    }
+
+    /**
+     * @param int $storeId
+     *
+     * @return string
+     */
+    public function getApiPassword($storeId)
+    {
+        return Mage::getStoreConfig(self::SENDER_API_USERNAME_CONFIG_XML, $storeId);
     }
 
     /**
@@ -52,9 +65,9 @@ class BulGento_SpeedySimpleShipping_Helper_Picking_Sender
     public function getPreparedData()
     {
         return array(
-            'ClientId' => '88888888888000',
+            'ClientId'    => '88888888888000',
             'PartnerName' => $this->getName(),
-            'Phones' => $this->getPhone()
+            'Phones'      => $this->getPhone()
         );
     }
 
