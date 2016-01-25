@@ -10,11 +10,27 @@ class BulGento_SpeedySimpleShipping_Helper_Api_Service
 {
 
     /**
+     * @param int $storeId
      * @return BulGento_SpeedySimpleShipping_Model_Api_Service
      */
-    public function getService()
+    public function getService($storeId = null)
     {
-        return new BulGento_SpeedySimpleShipping_Model_Api_Service('999898', '5374663973');
+        if(null === $storeId) {
+            $storeId = $this->_getRequest()->getParam('store_id');
+        }
+
+        $password = $this->_getSenderHelper()->getApiUsername($storeId);
+        $username = $this->_getSenderHelper()->getApiPassword($storeId);
+
+        return new BulGento_SpeedySimpleShipping_Model_Api_Service($username, $password);
+    }
+
+    /**
+     * @return BulGento_SpeedySimpleShipping_Helper_Picking_Sender
+     */
+    protected function _getSenderHelper()
+    {
+        return Mage::helper('speedy_simple_shipping/picking_sender');
     }
 
 }
