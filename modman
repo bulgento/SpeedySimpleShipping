@@ -1,6 +1,6 @@
-# BulGento_SpeedyShipping definition
+# Extendix_SpeedyShipping definition
 app/etc/modules/*.xml                                          app/etc/modules/
-app/code/community/BulGento/SpeedySimpleShipping/*             app/code/community/BulGento/SpeedySimpleShipping/
+app/code/community/Extendix/SpeedySimpleShipping/*             app/code/community/Extendix/SpeedySimpleShipping/
 app/design/adminhtml/default/default/layout/*                  app/design/adminhtml/default/default/layout/
 app/design/adminhtml/default/default/template/*                app/design/adminhtml/default/default/template/
 

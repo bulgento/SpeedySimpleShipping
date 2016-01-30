@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <!--
 /**
-* @author      Tsvetan Stoychev <tsvetan.stoychev@bulgento.com>
-* @website     http://www.bulgento.com
+* @author      Tsvetan Stoychev <tsvetan.stoychev@extendix.com>
+* @website     http://www.extendix.com
 * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
 */
 -->
 <config>
     <modules>
-        <BulGento_SpeedySimpleShipping>
+        <Extendix_SpeedySimpleShipping>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
                 <Mage_Sales />
                 <Mage_Shipping />
             </depends>
-        </BulGento_SpeedySimpleShipping>
+        </Extendix_SpeedySimpleShipping>
     </modules>
 </config>
