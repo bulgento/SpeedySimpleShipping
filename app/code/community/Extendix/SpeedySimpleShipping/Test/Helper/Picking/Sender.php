@@ -25,6 +25,7 @@ class Extendix_SpeedySimpleShipping_Test_Helper_Picking_Sender
     {
         $this->assertEquals('test phone', $this->_helper->getPhone());
         $this->assertEquals('test api username', $this->_helper->getApiUsername(0));
+        $this->assertEquals('test api password', $this->_helper->getApiPassword(0));
         $this->assertEquals('test name', $this->_helper->getName());
         $this->assertEquals('test site', $this->_helper->getSite());
     }

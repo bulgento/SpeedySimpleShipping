@@ -25,6 +25,7 @@ class Extendix_SpeedySimpleShipping_Test_Block_Adminhtml_BillOfLading_Sender
     {
         $this->assertEquals('test phone', $this->_block->getSenderHelper()->getPhone());
         $this->assertEquals('test api username', $this->_block->getSenderHelper()->getApiUsername(0));
+        $this->assertEquals('test api password', $this->_block->getSenderHelper()->getApiPassword(0));
         $this->assertEquals('test name', $this->_block->getSenderHelper()->getName());
         $this->assertEquals('test site', $this->_block->getSenderHelper()->getSite());
     }
