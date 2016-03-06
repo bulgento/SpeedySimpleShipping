@@ -40,7 +40,7 @@ class Extendix_SpeedySimpleShipping_Helper_Picking_Sender
      */
     public function getApiPassword($storeId)
     {
-        return Mage::getStoreConfig(self::SENDER_API_PASSWORD_CONFIG_XML, 0);
+        return Mage::helper('core')->decrypt(Mage::getStoreConfig(self::SENDER_API_PASSWORD_CONFIG_XML, 0));
     }
 
     /**
