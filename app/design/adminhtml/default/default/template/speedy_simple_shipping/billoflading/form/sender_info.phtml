@@ -10,24 +10,32 @@
 $_senderHelper = $this->getSenderHelper();
 ?>
 
-<div class="field-row grid">
-    <table cellspacing="0" class="data">
-        <thead>
-        <tr class="headings">
-            <th><?php echo $this->__('Sender info:') ?></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <ul>
-                    <li><?php echo $this->__('Api Username:') ?> <input value="<?php echo $_senderHelper->getApiUsername($this->getRequest()->getParam('store_id')); ?>" disabled="disabled" /></li>
-                    <li><?php echo $this->__('Name:') ?> <input value="<?php echo $_senderHelper->getName(); ?>" /></li>
-                    <li><?php echo $this->__('Phone:') ?> <input value="<?php echo $_senderHelper->getPhone() ?>" /></li>
-                    <li><?php echo $this->__('Site:') ?> <input value="<?php echo $_senderHelper->getSite(); ?>" /></li>
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="entry-edit">
+    <div class="field-row grid">
+        <table cellspacing="0" class="data">
+            <thead>
+                <tr class="headings">
+                    <th colspan="2"><?php echo $this->__('Sender info') ?></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td width="20%"><?php echo $this->__('Api Username:') ?></td>
+                    <td><input class="input-text" value="<?php echo $_senderHelper->getApiUsername($this->getRequest()->getParam('store_id')); ?>" disabled="disabled" /></td>
+                </tr>
+                <tr>
+                    <td width="20%"><?php echo $this->__('Name:') ?></td>
+                    <td><input class="input-text" value="<?php echo $_senderHelper->getName(); ?>" /></td>
+                </tr>
+                <tr>
+                    <td width="20%"><?php echo $this->__('Phone:') ?></td>
+                    <td><input class="input-text" value="<?php echo $_senderHelper->getPhone() ?>" /></td>
+                </tr>
+                <tr>
+                    <td width="20%"><?php echo $this->__('Site:') ?></td>
+                    <td><input class="input-text" value="<?php echo $_senderHelper->getSite(); ?>" /></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
