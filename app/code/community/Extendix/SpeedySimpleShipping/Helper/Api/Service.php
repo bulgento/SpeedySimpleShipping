@@ -19,10 +19,11 @@ class Extendix_SpeedySimpleShipping_Helper_Api_Service
             $storeId = $this->_getRequest()->getParam('store_id');
         }
 
-        $password = $this->_getSenderHelper()->getApiUsername(0);
-        $username = $this->_getSenderHelper()->getApiPassword(0);
+        $password = $this->_getSenderHelper()->getApiUsername($storeId);
+        $username = $this->_getSenderHelper()->getApiPassword($storeId);
 
-        return new Extendix_SpeedySimpleShipping_Model_Api_Service($username, $password);
+        /** @todo: Add username and password as variables here */
+        return new Extendix_SpeedySimpleShipping_Model_Api_Service('999898', '5374663973');
     }
 
     /**
